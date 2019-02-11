@@ -39,7 +39,7 @@ Optimize the loess fit by eye. Just modify span, to keep things simple.
 ```{r, fig.width=6, fig.height=4}
 grid <- seq(min(crab$width), max(crab$width), length.out=100)
 grid_df <- tibble(width = grid)
-model1 <- loess(n_male ~ width, data=crab, TUNE_PARAMETERS_HERE)
+model1 <- loess(n_male ~ width, data=crab, degree = 2, span = 0.6)
 grid_df %>% 
   mutate(., yhat = predict(model1, .)) %>% 
   ggplot(aes(width, yhat)) +
@@ -51,7 +51,7 @@ What's the error of this model? Training error is fine.
 
 ```{r}
 resid1 <- crab$n_male - predict(model1)
-error1 <- FILL_THIS_IN
+(error1 <- mean(resid1^2))
 ```
 
 How well does this model answer our original question?
