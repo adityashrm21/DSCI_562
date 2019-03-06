@@ -100,7 +100,11 @@ Obtain the Kaplan-Meier estimate of the survival function using `survival::survf
 
 ```{r}
 (fit_km <- survfit(
+<<<<<<< HEAD
     y ~ 1, 
+=======
+    Surv(futime, fustat) ~ 1, 
+>>>>>>> upstream/master
     data = ovarian
 ))
 ```
@@ -200,7 +204,11 @@ Under the Proportional Hazards model, plot the survival function and obtain a me
 ```{r}
 (fit_ph_survfit <- survfit(
     fit_ph, 
+<<<<<<< HEAD
     newdata = ovarian[1, ]
+=======
+    newdata = data.frame(rx = 1)#ovarian[1, ]
+>>>>>>> upstream/master
 ))
 ```
 
@@ -225,4 +233,3 @@ fit_ph_survfit %>%
 fit_ph_survfit %>% 
     quantile(probs = 0.5)
 ```
-
